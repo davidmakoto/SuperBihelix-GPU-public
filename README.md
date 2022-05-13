@@ -39,6 +39,7 @@ Pandas (code omitted due to pattent)
 Navigate to the parent directory for the project
 ```bash
 git clone https://github.com/dmw01/SuperBihelix-GPU-public.git;
+cd SuperBihelix-GPU-public;
 python3 SuperBihelix_GPU.py # (angles.txt and super.template must be in same dir)
 ```
 
