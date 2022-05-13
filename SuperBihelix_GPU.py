@@ -1,39 +1,43 @@
-import Helper as helpers
-import Helix as Helix
-import GPCR as GPCRClass
-import pandas as pd
 import numpy as np
-
-# import CUDA_kernels as CUDA_kernels
+import pandas as pd
 import pycuda.driver as drv
 import pycuda.gpuarray as gpuarray
 import pycuda.driver as cuda
 import pycuda.autoinit
-import numpy as np
+# import CUDA_kernels as CUDA_kernels # commented out for development without access to nvidia GPUs
 from pycuda.compiler import SourceModule
 from time import time
+
+
+import Helper as helpers
+import Helix as Helix
+import GPCR as GPCRClass
 
 # driver code:
 #   1) Creates GPCR object
 #   2) Initialites interacting helices (hard coded for now)
 #   3) Parses protein input information
 #   4) Formats protein helix pair input
-#   5) GPU_setup organizes information for PyCUDA framework and sends jobs to gpu 
+#   5) GPU_setup - parent function that  
+#     * host_to_gpu - Allocates memory on the device and sends jobs to GPU
+
 
 def main():
+    # 1) Creates GPCR object
+    
     # handle_com_line_args()
     GPCR = GPCRClass.GPCR(None)  # creating empty GPCR obj to attach conformation information to
+    # 2) Initalize interacting helices 
     helices_of_interest = (1, 2)
 
-    # Inputs
-    read_starting_struct('CPU_Code/super.template', GPCR)
-    read_angles('CPU_Code/angles.txt', 
+    # 3) Parse protein input information
+    read_starting_struct('super.template', GPCR)
+    read_angles('angles.txt', 
                   helices_of_interest, 
                   GPCR)
-                  # todo: should this be a second GPCR?
-                  # todo: figure out how to store all gpcr info in another gpcr based on helices of interest and starting structure
-
+    # 4) Formats protein helix pair input -- from object into pandas data frame
     hel_pair_df = create_helix_pair_df(GPCR)  
+    # 5) GPU tasks: initalizes CUDA variables, 
     GPU_setup(hel_pair_df) # handles all of the device interaction code
          
 
@@ -148,7 +152,6 @@ def host_to_gpu(kernel_input, num_tasks, hel_pair_df: pd.DataFrame):
     theta2_input_arr = np.full(len(hel_pair_df), df_col_to_np_arr(hel_pair_df, "theta2"), np.float32)
     eta2_input_arr   = np.full(len(hel_pair_df), df_col_to_np_arr(hel_pair_df, "eta2"), np.float32)
     hpc2_input_arr   = np.full(len(hel_pair_df), df_col_to_np_arr(hel_pair_df, "hpc2"), np.float32)
-    # print("--- phi1_input_arr --- ", phi1_input_arr)  # for debugging
 
     # allocating memory on the gpu of size (input arr)
     input_phi1_array_gpu   = gpuarray.to_gpu(phi1_input_arr)
