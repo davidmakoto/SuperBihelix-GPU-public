@@ -2,7 +2,7 @@
 is a boilerplate app to run portions of the patented molecular dynamics simulation, SuperBihelix, in parallel on graphics processing units (GPU) using the PyCUDA/CUDA framework.
 
 # Disclaimer
-The code is not functional due to a pattent on the parent algorithm, and because the project had it's timeline extended drastically after deep analysis of the project's approach to the problem. This repo is primarily here as a jumping off point for the student picking up the project.
+The code is not functional due to a pattent on the parent algorithm. This repo is primarily here as a jumping off point for the student picking up the project.
 
 # Introduction: SuperBihelix
 is a pattented sturctural bioinformatics algorithm used to determine the stability of G coupled protein receptors (GPCR) or seven transmembrane proteins (7TM) protein's conformations (possible orientations). This is done by constructing a model of the physical structure of the protein, followed by a brute force stability calculation of every single possible orientation of the protein, the most stable of which are outputted to the researcher. The number of configurations is designed to reach 13 trillion for a 7TM protein ((5 × 3 × 5) ^ 7), which prompted the idea of parallel processing through the general purpose graphics processing unit (GPGPU) paradigm.
