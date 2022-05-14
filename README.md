@@ -60,10 +60,14 @@ The general structure of the code is as follows:
 
 #### main driver
 superbihelix_GPU.py
+
 #### GPCR and Helix classes
 * GPCR.py 
 * Helix.py
 
+#### device code
+* CUDA_kernels.py
+<br> CUDA C/C++ code for PyCUDA
 
 #### input files
 * super.template
