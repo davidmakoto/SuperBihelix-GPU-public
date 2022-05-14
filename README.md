@@ -71,7 +71,7 @@ superbihelix_GPU.py
 
 
 #### GPU benchmark helpers
-* Herlp.py 
+* Helper.py 
 <br>
 Functions related to comparing the time to complete tasks on the GPU and CPU and verifying identical answers of large arrays.
 
