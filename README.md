@@ -52,7 +52,7 @@ Coordinates specifying the orientation of a TM helix in a membrane [1].
 More can be read about the SuperBihelix algorithm in the [Bihelix paper](https://pubmed.ncbi.nlm.nih.gov/22173949/) or the [SuperBihelix paper](https://www.pnas.org/doi/pdf/10.1073/pnas.1321233111).
 
 ### PyCUDA GPGPU framework
-The PyCUDA framework was used to interface with the Nvidia GPU. PyCUDA is a wrapper for NVIDIA's GPU framework, CUDA (C/C++), which falls under the paraell paradigm umbrella of languages. The PyCUDA simplifies the process of sending jobs to the GPU, memory allocation, etc.. The general workflow behind PyCUDA is:
+The PyCUDA framework was used to interface with the Nvidia GPU. PyCUDA is a wrapper for NVIDIA's GPU framework, CUDA (C/C++), which falls under the paraell paradigm umbrella of languages. The PyCUDA framework simplifies the process of sending jobs to the GPU, memory allocation, etc. The general workflow behind PyCUDA is as follows:
 * initalize GPU parameters (e.g. parameters related to sharing memory on the GPU architecture such as block/grid size)
 * define CUDA C/C++ functions or kernels, which are run by the device 
 * allocate input and output arrays to exchange information the GPU device
