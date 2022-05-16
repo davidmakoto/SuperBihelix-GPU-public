@@ -5,6 +5,7 @@ is a boilerplate app to run portions of the patented molecular dynamics simulati
 # Table of contents
 * [Motivation](#motivation)
 * [Introduction](#introduction)
+* [Disclaimer](#disclaimer)
 * [Dependancies](#dependancies)
 * [Project Sturcture](#project-structure)
 * [Running Instructions](#running-instructions)
