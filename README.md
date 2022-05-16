@@ -5,7 +5,6 @@ is a boilerplate app to run portions of the patented molecular dynamics simulati
 # Table of contents
 * [Motivation](#motivation)
 * [Introduction](#introduction)
-* [Disclaimer](#disclaimer)
 * [Dependancies](#dependancies)
 * [Project Sturcture](#project-structure)
 * [Running Instructions](#running-instructions)
@@ -13,16 +12,14 @@ is a boilerplate app to run portions of the patented molecular dynamics simulati
 * [References](#references)
 
 # Motivation
-This project was created to speed up the current implementation of SuperBihelix via parallization, which is limited by it's intensive time and resource requirements. In addition, the SuperBihelix algorithm can be tweaked to search even more exaustively by searching 360 times per degree of freedom (DOF), instead of [3-5 times per DOF](#introduction), but this would contribute exponentialy to the current resource bottleneck. Without molecular dynamics conformational sampling tools, researchers generally rely on crystallography or cryo-electron microscopy images to investigate the structure of a GPCR, however this is a single conformational space, and can take weeks or months to produce one particular crystal structure,
-
-
-# Disclaimer
-The code is not functional due to a pattent on the parent algorithm. This redacted repo is primarily here to showcase my work. For those interested in joining the project, please send me a message on getting more information.
+This project was created to speed up the current implementation of the pattented conformational analysis algorithm, SuperBihelix via parallization. The algorithm's exhaustive nature (> 13 trillion input structures) causes the algorithm to take days to weeks to run depending on the supercomputer. In addition, the SuperBihelix algorithm "cuts corners" in order to make the runtime bearable, by sampling a circular region 3 or 5 times instead of 360 or 720 times, hindering the true strength of the algorithm. Parallel processing is the most obvious solution to improve the run time of this legacy algorithm. 
 
 
 # Introduction: 
 ### Structural bioinformatics
-The origional SuperBihelix algorithm is a pattented sturctural bioinformatics algorithm used to determine the stability various conformations (possible orientations) of G coupled protein receptors (GPCR) aka seven transmembrane (7TM) proteins. This is useful for drug researchers investigating cell signaling pathways. The analysis is done by constructing a model of the physical structure of the protein, followed by a brute force stability calculation of every single possible orientation of the protein -- the most stable of which are outputted to the researcher.
+The SuperBihelix algorithm is a pattented sturctural bioinformatics algorithm used to determine the stability various conformations (possible orientations) of a GPCR aka seven transmembrane (7TM) proteins. It is useful for drug researchers investigating cell signaling pathways. The analysis is done by constructing a physics based model of the protein's structure, followed by a brute force stability calculation of every single possible orientation of the protein -- the most stable of which are outputted to the researcher.
+
+Without molecular dynamics conformational sampling tools, researchers generally rely on crystallography or cryo-electron microscopy images to attain a conformational snapshot of a protein, for investigation. Unfortinately, these techniques produce a single conformational space, and can take weeks or months to produce one particular crystal structure. Trying to find a target protein's exact conformation using older techniques can be compared to trial and error based on educated guesses, that are only validated after a lengthy and possibly expensive process.
 
 <!-- GPCR IMAGE -->
 <p align="center">
@@ -75,6 +72,10 @@ To learn more understand more about parallel processing using gpus, check out th
 <p align = "center">
 Description pipeline of tasks from host to device and compatibility of NVCC compiler.
 </p>
+
+
+# Disclaimer
+The code is not functional due to a pattent on the parent algorithm. This redacted repo is primarily here to showcase my work. For those interested in joining the project, please send me a message on getting more information.
 
 
 # Project Structure
