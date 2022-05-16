@@ -126,7 +126,7 @@ python3 SuperBihelix_GPU.py
 
 # Next Steps
 The next step in the project is to identify time consuming steps within specific parts of the algorithm and rewrite the code in PyCUDA or Python's Numba library. The most time consuming step is the side chain optimization via Side-Chain Rotamer Excitation Analysis Method (SCREAM). However, the implementation is ~2500 lines of non-CUDA compatible python. In addition, the initial calling of SuperBihelix must be refractored from iterative processing to parallel processing, in a way that all of the steps proceeding the SCREAM process is completed.
-The current structure of SuperBihelix_GPU.py assumes that all of the algorithms within SuperBihelix can be parallelized using NVCC, as this was the assumption until the project ended. The skeleton behind the no public version of SuperBihelix can serve as a starting template for what needs to be done with SCREAM. 
+The current structure of SuperBihelix_GPU.py assumes that all of the algorithms within SuperBihelix can be parallelized using NVCC, as this was the assumption until the project ended. The skeleton behind the non public version of SuperBihelix GPU can serve as a starting template for what needs to be done with SCREAM. 
 
 
 
