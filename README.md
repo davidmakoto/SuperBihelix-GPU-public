@@ -2,7 +2,7 @@
 is a boilerplate app to run portions of the patented molecular dynamics simulation, SuperBihelix, in parallel on graphics processing units (GPU) using the PyCUDA/CUDA framework.
 
 
-## Table of contents
+# Table of contents
 * [Motivation](#motivation)
 * [Introduction](#introduction)
 * [Disclaimer](#disclaimer)
@@ -21,6 +21,7 @@ The code is not functional due to a pattent on the parent algorithm. This redact
 
 
 # Introduction: 
+### Structural bioinformatics
 The origional SuperBihelix algorithm is a pattented sturctural bioinformatics algorithm used to determine the stability various conformations (possible orientations) of G coupled protein receptors (GPCR) aka seven transmembrane (7TM) proteins. This is useful for drug researchers investigating cell signaling pathways. The analysis is done by constructing a model of the physical structure of the protein, followed by a brute force stability calculation of every single possible orientation of the protein -- the most stable of which are outputted to the researcher.
 
 <!-- GPCR IMAGE -->
@@ -50,8 +51,30 @@ Coordinates specifying the orientation of a TM helix in a membrane [1].
 </p>
 
 
-More can be read about the SuperBihelix algorithm in the [Bihelix paper]() or the [SuperBihelix paper](https://www.pnas.org/doi/pdf/10.1073/pnas.1321233111).
+More can be read about the SuperBihelix algorithm in the [Bihelix paper](https://pubmed.ncbi.nlm.nih.gov/22173949/) or the [SuperBihelix paper](https://www.pnas.org/doi/pdf/10.1073/pnas.1321233111).
 
+### PyCUDA GPGPU framework
+The PyCUDA framework was used to interface with the Nvidia GPU. PyCUDA is a wrapper for NVIDIA's GPU framework, CUDA (C/C++), which falls under the paraell paradigm umbrella of languages. The PyCUDA simplifies the process of sending jobs to the GPU, memory allocation, etc.. The general workflow behind PyCUDA is:
+* initalize GPU parameters (e.g. parameters related to sharing memory on the GPU architecture such as block/grid size)
+* define CUDA C/C++ functions or kernels, which are run by the device 
+* allocate input and output arrays to exchange information the GPU device
+* and finally send jobs (kernel tasks) to the gpu.
+
+To learn more understand more about parallel processing using gpus, check out the following resources:
+* [PyCUDA Documentation](https://documen.tician.de/pycuda/)
+* [NVIDIA CUDA Documentation](https://docs.nvidia.com/cuda/)
+* [Book: Hands-On GPU Programming with Python and CUDA: Explore high-performance parallel computing with CUDA](https://www.amazon.com/Hands-Programming-Python-CUDA-high-performance/dp/1788993918)
+
+
+<!-- PyCUDA descriptive slide -->
+<p align="center">
+  <img width=90% 
+       src="https://user-images.githubusercontent.com/20344260/168404356-f9a5aad4-957f-46d9-b4e3-803b2f5e78aa.png">
+</p>
+<!-- caption -->
+<p align = "center">
+Description pipeline of tasks from host to device and compatibility of NVCC compiler.
+</p>
 
 
 # Project Structure
@@ -87,17 +110,6 @@ Functions related to comparing the time to complete tasks on the GPU and CPU and
 * NVIDIA GPU hardware
 * PyCUDA (python framework built on NVIDIA's compute unified device architecture (CUDA) framework)
 
-
-
-<!-- PyCUDA descriptive slide -->
-<p align="center">
-  <img width=90% 
-       src="https://user-images.githubusercontent.com/20344260/168404356-f9a5aad4-957f-46d9-b4e3-803b2f5e78aa.png">
-</p>
-<!-- caption -->
-<p align = "center">
-Description pipeline of tasks from host to device and compatibility of NVCC compiler.
-</p>
 
 
 
